@@ -9,8 +9,8 @@ class JobSearchTest(BasePage):
     def test_jobSearch(self):
         js = JobSearchPage(self.driver)
         time.sleep(5)
-        js.click_on_advertise_close()
-        time.sleep(3)
+        # js.click_on_advertise_close()
+        # time.sleep(3)
         js.enter_job_type_text()
         time.sleep(3)
         js.click_organization_type()

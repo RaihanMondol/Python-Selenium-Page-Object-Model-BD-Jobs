@@ -1,7 +1,9 @@
 import time
 import unittest
 from selenium import webdriver
-
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 class BasePage(unittest.TestCase):
 
@@ -9,7 +11,11 @@ class BasePage(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.driver = webdriver.Chrome(executable_path="F:\\Automation\\BDJobs\\Drivers\\chromedriver.exe")
+        service = Service(executable_path=ChromeDriverManager().install())
+        option = Options()
+        option.add_argument('--headless')
+        option.add_argument('window-size=1920, 1080')
+        cls.driver = webdriver.Chrome(service=service, options=option)
         cls.driver.maximize_window()
         cls.driver.get("https://www.bdjobs.com/")
         print("Test Started")
